@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Movie
+
+<h1>Fill out the form to add a movie to Joel's list:</h1>
+<form method="post">
+    <label asp-for="Category">Category:</label>
+    <input asp-for="Category" required />
+    <br />
+
+    <label asp-for="Title">Title:</label>
+    <input asp-for="Title" required />
+    <br />
+
+    <label asp-for="Year">Year:</label>
+    <input asp-for="Year" type="number" required />
+    <br />
+
+    <label asp-for="Director">Director:</label>
+    <input asp-for="Director" required />
+    <br />
+
+    <label asp-for="Rating">Rating:</label>
+    <select asp-for="Rating" required asp-items="@(new List<SelectListItem> {
+        new SelectListItem { Value = "G", Text = "G" },
+        new SelectListItem { Value = "PG", Text = "PG" },
+        new SelectListItem { Value = "PG-13", Text = "PG-13" },
+        new SelectListItem { Value = "R", Text = "R" }
+    })">
+        <option value="">-- Select Rating --</option>
+    </select>
+    <br />
+
+    <label asp-for="Edited">Edited:</label>
+    <select asp-for="Edited" required>
+        <option value="" disabled selected>-- Select --</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br />
+
+    <label asp-for="LentTo">Lent To:</label>
+    <input asp-for="LentTo" />
+    <br />
+
+    <label asp-for="Notes">Notes:</label>
+    <input asp-for="Notes" maxlength="25" />
+    <br />
+
+    <button type="submit">Submit</button>
+</form>
