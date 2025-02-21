@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Mission6_Kehl.Models.Movie>
+
+<h2>Joel Hilton's Movie Collection</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Rating</th>
+            <th>Category</th>
+            <th>Edited</th>
+            <th>Copied to Plex</th>
+            <th>Actions</th> <!-- Edit/Delete -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Director</td>
+                <td>@movie.Rating</td>
+                <td>@(movie.Category?.CategoryName ?? "Uncategorized")</td>
+                <td>@(movie.Edited ? "Yes" : "No")</td>
+                <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="EditMovie" asp-route-id="@movie.MovieId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="DeleteMovie" asp-route-id="@movie.MovieId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddMovie" class="btn btn-success">Add New Movie</a>
